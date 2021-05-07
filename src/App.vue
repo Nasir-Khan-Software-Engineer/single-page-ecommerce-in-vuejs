@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+	<Nav :total_cart=total_cart></Nav>
+	
+	<router-view @removeItemFormCart="removeTotalCart" @addProduct="addTotalCart" />
+	<Footer/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+	import Nav from '@/components/Nav.vue';
+	import Footer from '@/components/Footer.vue';
+	export default {
+		name: 'App',
+		components: {
+			Nav,
+			Footer
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+		},
+		data(){
+			return {
+				total_cart: 4
+			}
+		},
+		methods: {
+			addTotalCart () {
+				this.total_cart++;
+			},
+			removeTotalCart(){
+				this.total_cart--;
+			}
+		},
+
+	}
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
